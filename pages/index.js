@@ -10,7 +10,7 @@ export default function Home() {
 			<div>
 				<EditForm
 					deck={{
-						width: 5, height: 5, depth: 5
+						width: 24, length: 50, depth: 60
 					}}
 					onChange={() =>{}}
 				></EditForm>
