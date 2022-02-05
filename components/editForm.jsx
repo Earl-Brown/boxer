@@ -10,12 +10,11 @@ export const EditForm = props => {
 	const [currentLength, setLength] = useState(length)
 	const [currentDepth, setDepth] = useState(depth)
 
-	const definition = new Definition(currentWidth, length, depth)
-
+	const definition = new Definition(currentWidth, currentLength, currentDepth)
 
 	const widthChanged = newWidth => { setWidth(newWidth) }
-	const lengthChanged = newLength => { }
-	const depthChanged = newDepth => { }
+	const lengthChanged = newLength => { setLength(newLength) }
+	const depthChanged = newDepth => { setDepth(newDepth) }
 
 	return <div>
 		<div style={{ width: "70%", float: "right" }}>
@@ -30,9 +29,13 @@ export const EditForm = props => {
 
 				<div>Length (horizontal measurement of card face)</div>
 				<div>{length}</div>
+				<input type="number" value={currentLength} onChange={e => lengthChanged(e.target.value)} />
+
 
 				<div>Depth (vertical measurement of card face)</div>
 				<div>{depth}</div>
+				<input type="number" value={currentDepth} onChange={e => depthChanged(e.target.value)} />
+
 			</SimpleGrid>
 		</div>
 
