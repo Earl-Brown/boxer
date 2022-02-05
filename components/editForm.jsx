@@ -1,20 +1,24 @@
+import { useState } from 'react'
 import { SimpleGrid } from '@mantine/core'
-import generators from './generators'
+import { Renderer } from './Renderer'
+import { EcmaA5520_20_01_01 as Definition } from './generators/ECMA a55.20.01.01'
 
 export const EditForm = props => {
-
 	const { deck, onChange } = { onchange: () => { }, deck: { width: 60, depth: 25, length: 72 }, ...props }
 	const { width, length, depth } = deck
+
+	const [definition, setDefinition] = useState(new Definition(width, length, depth))
+
+	//	setDefinition(new Definintion(width, length, depth))
+	console.log("definition", JSON.stringify(definition, undefined, 2))
 
 	const widthChanged = () => { }
 	const lengthChanged = () => { }
 	const depthChanged = () => { }
 
-	const Renderer = generators[0].renderer
-
 	return <div>
 		<div style={{ width: "70%", float: "right" }}>
-			<Renderer width={width} depth={depth} length={length}></Renderer>
+			<Renderer foldLines={definition.foldLines} cutLines={definition.cutLines} gluePoints={definition.gluePoints}></Renderer>
 		</div>
 
 		<div style={{ width: "30%", backgroundColor: "lightgreen" }}>
