@@ -7,7 +7,7 @@ const arrayToString = arr => {
 const foldsToString = arr => {
 	var str = arrayToString(arr)
 	if (str != null) return str
-	console.log('folds failed', typeof (str), arr)
+	console.log('folds failed', typeof (arr), arr)
 	throw "folds must be a string or an array"
 }
 
@@ -42,9 +42,6 @@ export const Renderer = props => {
 			}
 		}, ...props
 	}
-
-	console.log("props", JSON.stringify(props, undefined, 2))
-	console.log("foldLines", JSON.stringify(foldLines, undefined, 2))
 
 	const folds = foldsToString(foldLines)
 	const cuts = cutsToString(cutLines)

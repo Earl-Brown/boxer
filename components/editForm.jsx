@@ -4,17 +4,18 @@ import { Renderer } from './Renderer'
 import { EcmaA5520_20_01_01 as Definition } from './generators/ECMA a55.20.01.01'
 
 export const EditForm = props => {
-	const { deck, onChange } = { onchange: () => { }, deck: { width: 60, depth: 25, length: 72 }, ...props }
-	const { width, length, depth } = deck
+	const { width, length, depth, onChange } = { width: 60, depth: 25, length: 72, onchange: () => { }, ...props }
 
-	const [definition, setDefinition] = useState(new Definition(width, length, depth))
+	const [currentWidth, setWidth] = useState(width)
+	const [currentLength, setLength] = useState(length)
+	const [currentDepth, setDepth] = useState(depth)
 
-	//	setDefinition(new Definintion(width, length, depth))
-	console.log("definition", JSON.stringify(definition, undefined, 2))
+	const definition = new Definition(currentWidth, length, depth)
 
-	const widthChanged = () => { }
-	const lengthChanged = () => { }
-	const depthChanged = () => { }
+
+	const widthChanged = newWidth => { setWidth(newWidth) }
+	const lengthChanged = newLength => { }
+	const depthChanged = newDepth => { }
 
 	return <div>
 		<div style={{ width: "70%", float: "right" }}>
@@ -24,9 +25,12 @@ export const EditForm = props => {
 		<div style={{ width: "30%", backgroundColor: "lightgreen" }}>
 			<SimpleGrid cols={2}>
 				<div>Width (thickness of card * number of cards)</div>
-				<div>{width}</div>
+				<div>{currentWidth}</div>
+				<input type="number" value={currentWidth} onChange={e => widthChanged(e.target.value)} />
+
 				<div>Length (horizontal measurement of card face)</div>
 				<div>{length}</div>
+
 				<div>Depth (vertical measurement of card face)</div>
 				<div>{depth}</div>
 			</SimpleGrid>
