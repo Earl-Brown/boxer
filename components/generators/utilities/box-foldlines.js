@@ -1,7 +1,7 @@
-export const generateBox = (offset, width, depth, height) => [
+export const generateBox = (offset, width, depth, length) => [
 	// draw outer square
 	`h ${length} `,
-	`v ${bottom}`,
+	`v ${(width * 2) + (depth * 2)}`,
 	`H ${offset.x}`,
 	`V ${offset.y}`,
 

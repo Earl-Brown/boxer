@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { SimpleGrid } from '@mantine/core'
 import { Renderer } from './Renderer'
-import { EcmaA5520_20_01_01 as Definition } from './generators/ECMA a55.20.01.01'
+import { defineCarton } from './generators/ECMA a55.20.01.01'
 
 export const EditForm = props => {
 	const { width, length, depth, onChange } = { width: 60, depth: 25, length: 72, onchange: () => { }, ...props }
@@ -10,7 +10,7 @@ export const EditForm = props => {
 	const [currentLength, setLength] = useState(length)
 	const [currentDepth, setDepth] = useState(depth)
 
-	const definition = new Definition(currentWidth, currentLength, currentDepth)
+	const definition = defineCarton(currentWidth, currentLength, currentDepth)
 
 	const widthChanged = newWidth => { setWidth(newWidth) }
 	const lengthChanged = newLength => { setLength(newLength) }
