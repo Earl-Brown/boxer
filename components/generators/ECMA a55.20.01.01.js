@@ -10,11 +10,19 @@ export function defineCarton(depth, width, length,) {
 	}
 
 	const box = generateBox(offset, depth, width, length,)
+	const lidFold = [
+		`M ${offset.x + depth + width} ${offset.y + length + width} `,
+		`v ${length} `,
+	]
+
+
 	const bottom = (width * 2) + (depth * 2)
 
 	const flapWidth = width * 0.75
-	const flapLength = length * 0.475
+	const lockFlapLength = length * 0.475
 	const flapCurveRadius = width * 0.1
+	const tuckFlapLength = length * 0.3
+
 
 	const glueTab = [
 		`M ${offset.x} ${offset.y}`,
@@ -46,47 +54,53 @@ export function defineCarton(depth, width, length,) {
 
 	const supportFlap1 = [
 		`M ${offset.x} ${offset.y + length}`,
-		`h ${-flapLength}`,
-		`v ${width * 0.4}`,
+		`h ${-lockFlapLength}`,
+		`v ${width * 0.5 - flapCurveRadius}`,
 		arc2,
-		`h ${flapLength - flapCurveRadius - length * 0.2}`,
+		`h ${lockFlapLength - flapCurveRadius - length * 0.2}`,
 		`l ${length * 0.2} ${width * 0.5}`
+	]
+
+	const lockFlap = [
+		`M ${offset.x} ${offset.y + width + length}`,
+		`h ${-width}`,
+		`v ${length * 0.2}`,
+		arc2,
+		`h ${width * 0.5 - flapCurveRadius}`,
+		`v ${(length * 0.6) - (width * 0.2)}`,
+		`h ${-(width * 0.5 - flapCurveRadius)}`,
+		arc1,
+		`v ${length * 0.2}`,
+		`h ${width}`
+	]
+
+	const supportFlap2 = [
+		`M ${offset.x} ${offset.y + length + width + length}`,
+		`l ${length * -0.2} ${width * 0.5}`,
+		`h ${-(lockFlapLength - flapCurveRadius - length * 0.2)}`,
+		arc1,
+		`v ${width * 0.5 - flapCurveRadius}`,
+		`h ${lockFlapLength}`
+	]
+
+	const tuckFlap1 = [
+		`M ${offset.x + depth} ${offset.y + (width * 2) + (length * 2)}`,
+		`h ${5}`,
+		`l ${tuckFlapLength} ${width * -0.1}`,
+		`v ${width * -0.85}`,
+		`l ${-tuckFlapLength - 5} ${width * -0.05}} `
+	]
+
+	const tuckLid = [
 
 	]
 
-	const lockSlot = [
+	const tuckFlap2 = [
 
 	]
 
-	// const overFlap = [
-	// 	`l ${ depth * -0.5 } ${ depth * 0.5 } `,
-	// 	`h ${ depth * -0.25 } `,
+	const tuckOpening = [
 
-	// 	`a ${ depth * 0.25 } ${ depth * 0.25 } 0 0 0 ${ depth * -0.25 } ${ depth * 0.25 } `,
-
-	// 	`v ${ width - (depth * 1.5) } `,
-	// 	`a ${ depth * 0.25 } ${ depth * 0.25 } 0 0 0 ${ depth * 0.25 } ${ depth * 0.25 } `,
-
-	// 	`h ${ depth * 0.25 } `,
-	// 	`l ${ depth * 0.5 } ${ depth * 0.5 } `,
-	// ]
-
-	// const tuckFlap = [
-	// 	`h ${ -depth } `,
-	// 	`v ${ width * 0.1 } `,
-	// 	`a ${ depth * 0.25 } ${ depth * 0.25 } 0 0 0 ${ depth * 0.25 } ${ depth * 0.25 } `,
-	// 	`h ${ depth * 0.25 } `,
-
-	// 	`v ${ width - (depth * 1) } `,
-	// 	`h ${ depth * -0.25 } `,
-	// 	`a ${ depth * 0.25 } ${ depth * 0.25 } 0 0 0 ${ depth * -0.25 } ${ depth * 0.25 } `,
-	// 	`v ${ width * 0.1 } `,
-	// 	`h ${ depth } `
-	// ]
-
-	const lidFold = [
-		`M ${offset.x + depth + width} ${offset.y + length + width} `,
-		`v ${length} `,
 	]
 
 
@@ -112,8 +126,14 @@ export function defineCarton(depth, width, length,) {
 			`M 	${offset.x} ${offset.y} `,
 			...lockTab,
 			...supportFlap1,
+			...lockFlap,
+			...supportFlap2,
+			`h ${depth} `,
+			tuckFlap1,
+			tuckLid,
+			tuckFlap2,
+			tuckOpening
 
-			// ...downFlap,
 
 			// ...tuckFlap,
 
