@@ -30,7 +30,6 @@ export function defineCarton(depth, width, length,) {
 		`l ${depth * 0.1} ${flapWidth}`,
 	]
 
-
 	// arcs: rx ry x-axis-rotation large-arc sweep x y
 	const arc1 = `a ${flapCurveRadius} ${flapCurveRadius} 0 0 0 ${-flapCurveRadius} ${flapCurveRadius}`
 	const arc2 = `a ${flapCurveRadius} ${flapCurveRadius} 0 0 0 ${flapCurveRadius} ${flapCurveRadius}`
@@ -49,8 +48,6 @@ export function defineCarton(depth, width, length,) {
 
 		`h ${(width * 0.4)}`,
 		`l ${width * 0.5} ${length * 0.2}`,
-
-		...glueTab
 	]
 
 	const supportFlap1 = [
@@ -116,7 +113,10 @@ export function defineCarton(depth, width, length,) {
 	]
 
 	const tuckOpening = [
-
+		`M ${offset.x + depth} ${offset.y}`,
+		`v ${length * 0.3}`,
+		`a ${length * 0.2} ${length * 0.2} 0 0 0 ${0} ${length * 0.4}`,
+		`v ${length * 0.3}`,
 	]
 
 
@@ -134,12 +134,12 @@ export function defineCarton(depth, width, length,) {
 		foldLines: [
 			`M ${offset.x} ${offset.y} `,
 			...box,
-			...lidFold,
-			...glueTab
+			...lidFold
 		],
 
 		cutLines: [
 			`M 	${offset.x} ${offset.y} `,
+			...glueTab,
 			...lockTab,
 			...supportFlap1,
 			...lockFlap,
@@ -148,10 +148,7 @@ export function defineCarton(depth, width, length,) {
 			tuckFlap1,
 			tuckLid,
 			// tuckFlap2,
-			// tuckOpening,
-
-
-			// ...tuckFlap,
+			tuckOpening,
 
 			// ...glueTab,
 		],
