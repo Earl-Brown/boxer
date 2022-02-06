@@ -83,7 +83,7 @@ export function defineCarton(depth, width, length,) {
 
 	const tuckFlap1 = [
 		`M ${offset.x + depth} ${offset.y + (width * 2) + (length * 2)}`,
-		`h ${5}`,
+		`h 5`,
 		`l ${tuckFlapLength} ${width * -0.1}`,
 		`v ${width * -0.85}`,
 		`l ${-tuckFlapLength - 5} ${width * -0.05}`
@@ -109,7 +109,11 @@ export function defineCarton(depth, width, length,) {
 	]
 
 	const tuckFlap2 = [
-
+		`M ${offset.x + depth} ${offset.y + length}`,
+		`h 5`,
+		`l ${tuckFlapLength} ${width * 0.1}`,
+		`v ${width * 0.85}`,
+		`l ${-tuckFlapLength - 5} ${width * 0.05}`
 	]
 
 	const tuckOpening = [
@@ -147,7 +151,7 @@ export function defineCarton(depth, width, length,) {
 			`h ${depth} `,
 			tuckFlap1,
 			tuckLid,
-			// tuckFlap2,
+			tuckFlap2,
 			tuckOpening,
 
 			// ...glueTab,
