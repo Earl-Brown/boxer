@@ -49,7 +49,7 @@ export const Renderer = props => {
 
 	return <div style={{ width: "inherit", length: "inherit", position: "relative" }}>
 		<div style={{ width: "inherit", length: "inherit", position: "absolute" }}>
-			<svg viewBox="0 0 222 279.4" xmlns="http://www.w3.org/2000/svg">
+			<svg viewBox="0 0 500 500" xmlns="http://www.w3.org/2000/svg">
 				<g id="svgGroup"
 					strokeLinecap="round"
 					fillRule="evenodd"

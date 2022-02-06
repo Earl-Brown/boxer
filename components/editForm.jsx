@@ -17,11 +17,11 @@ export const EditForm = props => {
 	const depthChanged = newDepth => { setDepth(newDepth) }
 
 	return <div>
-		<div style={{ width: "70%", float: "right" }}>
+		<div style={{ width: "80%", height: "100%", float: "right" }}>
 			<Renderer foldLines={foldLines} cutLines={cutLines} gluePoints={gluePoints}></Renderer>
 		</div>
 
-		<div style={{ width: "30%", backgroundColor: "lightgreen" }}>
+		<div style={{ width: "20%", backgroundColor: "lightgreen" }}>
 			<SimpleGrid cols={3}>
 
 				<div>Depth</div>
