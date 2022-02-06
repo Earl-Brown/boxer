@@ -1,78 +1,78 @@
 import { generateBox } from './utilities/box-foldlines'
 
-export function defineCarton(width, length, depth) {
+export function defineCarton(depth, width, length,) {
 
-	var { width, length, depth } = { width: 50, length: 78, depth: 25, ...{ width: Number(width), length: Number(length), depth: Number(depth) } }
+	var { width, length, depth } = { width: 20, length: 50, depth: 70, ...{ width: Number(width), length: Number(length), depth: Number(depth) } }
 
 	const offset = {
-		x: 10 + (depth * 2),
+		x: 10 + width,
 		y: 10
 	}
 
-	const flapDepth = depth * 0.75
+	const box = generateBox(offset, depth, width, length,)
 	const bottom = (width * 2) + (depth * 2)
 
-	const glueTab = [
-		`M ${offset.x} ${offset.y + bottom}`,
-		`l ${length * 0.1} ${flapDepth}`,
-		`h ${length * 0.8}`,
-		`l ${length * 0.1} ${0 - flapDepth}`,
-	]
+	// const flapDepth = depth * 0.75
 
-	const box = generateBox(offset, width, depth, length)
+	// const glueTab = [
+	// 	`M ${offset.x} ${offset.y + bottom}`,
+	// 	`l ${length * 0.1} ${flapDepth}`,
+	// 	`h ${length * 0.8}`,
+	// 	`l ${length * 0.1} ${0 - flapDepth}`,
+	// ]
 
-	const flaplength = width * 0.5
+	// const flaplength = width * 0.5
 
-	const upFlap = [
-		`l 	${(depth * -0.5)} ${depth * 0.5}`,
-		`h 	${(depth * -0.25)}`,
+	// const upFlap = [
+	// 	`l 	${(depth * -0.5)} ${depth * 0.5}`,
+	// 	`h 	${(depth * -0.25)}`,
 
-		// 			rx 							ry 							x-axis-rotation large-arc sweep x 									y
-		`a 	${depth * 0.25}	${depth * 0.25} 0 							0 				0 		${(depth * -0.25)} 	${depth * 0.25}`,
-		`v 	${depth * 0.25}`,
-		`h 	${flaplength}`
-	]
+	// 	// 			rx 							ry 							x-axis-rotation large-arc sweep x 									y
+	// 	`a 	${depth * 0.25}	${depth * 0.25} 0 							0 				0 		${(depth * -0.25)} 	${depth * 0.25}`,
+	// 	`v 	${depth * 0.25}`,
+	// 	`h 	${flaplength}`
+	// ]
 
-	const overFlap = [
-		`l ${depth * -0.5} ${depth * 0.5}`,
-		`h ${depth * -0.25}`,
+	// const overFlap = [
+	// 	`l ${depth * -0.5} ${depth * 0.5}`,
+	// 	`h ${depth * -0.25}`,
 
-		`a ${depth * 0.25} ${depth * 0.25} 0 0 0 ${depth * -0.25} ${depth * 0.25}`,
+	// 	`a ${depth * 0.25} ${depth * 0.25} 0 0 0 ${depth * -0.25} ${depth * 0.25}`,
 
-		`v ${width - (depth * 1.5)}`,
-		`a ${depth * 0.25} ${depth * 0.25} 0 0 0 ${depth * 0.25} ${depth * 0.25}`,
+	// 	`v ${width - (depth * 1.5)}`,
+	// 	`a ${depth * 0.25} ${depth * 0.25} 0 0 0 ${depth * 0.25} ${depth * 0.25}`,
 
-		`h ${depth * 0.25}`,
-		`l ${depth * 0.5} ${depth * 0.5}`,
-	]
+	// 	`h ${depth * 0.25}`,
+	// 	`l ${depth * 0.5} ${depth * 0.5}`,
+	// ]
 
-	const downFlap = [
-		`h 	${-flaplength}`,
-		`v 	${depth * 0.25}`,
+	// const downFlap = [
+	// 	`h 	${-flaplength}`,
+	// 	`v 	${depth * 0.25}`,
 
-		// 			rx 							ry 							x-axis-rotation large-arc sweep x 									y
-		`a 	${depth * 0.25}	${depth * 0.25} 0 							0 				0 		${(depth * 0.25)} 	${depth * 0.25}`,
+	// 	// 			rx 							ry 							x-axis-rotation large-arc sweep x 									y
+	// 	`a 	${depth * 0.25}	${depth * 0.25} 0 							0 				0 		${(depth * 0.25)} 	${depth * 0.25}`,
 
-		`h 	${(depth * 0.25)}`,
-		`l 	${(depth * 0.5)} ${depth * 0.5}`,
-	]
+	// 	`h 	${(depth * 0.25)}`,
+	// 	`l 	${(depth * 0.5)} ${depth * 0.5}`,
+	// ]
 
-	const tuckFlap = [
-		`h ${-depth}`,
-		`v ${width * 0.1}`,
-		`a ${depth * 0.25} ${depth * 0.25} 0 0 0 ${depth * 0.25} ${depth * 0.25}`,
-		`h ${depth * 0.25}`,
+	// const tuckFlap = [
+	// 	`h ${-depth}`,
+	// 	`v ${width * 0.1}`,
+	// 	`a ${depth * 0.25} ${depth * 0.25} 0 0 0 ${depth * 0.25} ${depth * 0.25}`,
+	// 	`h ${depth * 0.25}`,
 
-		`v ${width - (depth * 1)}`,
-		`h ${depth * -0.25}`,
-		`a ${depth * 0.25} ${depth * 0.25} 0 0 0 ${depth * -0.25} ${depth * 0.25}`,
-		`v ${width * 0.1}`,
-		`h ${depth}`
-	]
+	// 	`v ${width - (depth * 1)}`,
+	// 	`h ${depth * -0.25}`,
+	// 	`a ${depth * 0.25} ${depth * 0.25} 0 0 0 ${depth * -0.25} ${depth * 0.25}`,
+	// 	`v ${width * 0.1}`,
+	// 	`h ${depth}`
+	// ]
 
 	const lidFold = [
-		`M ${offset.x + length + depth} ${offset.y + bottom}`,
-		`v ${-width}`,
+		`M ${offset.x + depth + width} ${offset.y + length + width}`,
+		`v ${length}`,
 	]
 
 
@@ -104,11 +104,11 @@ export function defineCarton(width, length, depth) {
 			// ...glueTab,
 		],
 
-		gluePoints: [
-			{
-				pathLines: glueTab,
-				fillPattern: []
-			}
-		]
+		// gluePoints: [
+		// 	{
+		// 		pathLines: glueTab,
+		// 		fillPattern: []
+		// 	}
+		// ]
 	}
 }

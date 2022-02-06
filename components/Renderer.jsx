@@ -45,7 +45,7 @@ export const Renderer = props => {
 
 	const folds = foldsToString(foldLines)
 	const cuts = cutsToString(cutLines)
-	const glues = gluesToString(gluePoints)
+	//	const glues = gluesToString(gluePoints)
 
 	return <div style={{ width: "inherit", length: "inherit", position: "relative" }}>
 		<div style={{ width: "inherit", length: "inherit", position: "absolute" }}>
