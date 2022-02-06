@@ -14,6 +14,7 @@ export function defineCarton(depth, width, length,) {
 
 	const flapWidth = width * 0.75
 	const flapLength = length * 0.475
+	const flapCurveRadius = width * 0.1
 
 	const glueTab = [
 		`M ${offset.x} ${offset.y}`,
@@ -23,9 +24,8 @@ export function defineCarton(depth, width, length,) {
 	]
 
 	// 								rx 							ry 						 x-axis-rotation 	large-arc sweep x									y
-	const arc1 = `a 	${width * 0.1}	${width * 0.1} 0 								0 				0 		${width * -0.1} 	${width * 0.1}`
-
-	const arc2 = `a ${width * 0.1} ${width * 0.1} 0 0 0 ${width * 0.1} ${width * 0.1}`
+	const arc1 = `a 	${flapCurveRadius}	${flapCurveRadius} 0 								0 				0 		${-flapCurveRadius} 	${flapCurveRadius}`
+	const arc2 = `a ${flapCurveRadius} ${flapCurveRadius} 0 0 0 ${flapCurveRadius} ${flapCurveRadius}`
 
 
 	const lockTab = [
@@ -49,7 +49,12 @@ export function defineCarton(depth, width, length,) {
 		`h ${-flapLength}`,
 		`v ${width * 0.4}`,
 		arc2,
+		`h ${flapLength - flapCurveRadius - length * 0.2}`,
+		`l ${length * 0.2} ${width * 0.5}`
 
+	]
+
+	const lockSlot = [
 
 	]
 
