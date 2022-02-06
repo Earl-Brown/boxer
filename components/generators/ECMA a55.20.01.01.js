@@ -5,33 +5,38 @@ export function defineCarton(depth, width, length,) {
 	var { width, length, depth } = { width: 20, length: 50, depth: 70, ...{ width: Number(width), length: Number(length), depth: Number(depth) } }
 
 	const offset = {
-		x: 10 + width,
-		y: 10
+		x: 80 + width,
+		y: 10 + width * 0.8
 	}
 
 	const box = generateBox(offset, depth, width, length,)
 	const bottom = (width * 2) + (depth * 2)
 
-	// const flapDepth = depth * 0.75
+	const flapWidth = width * 0.75
+	const flapDepth = depth * 0.35
 
-	// const glueTab = [
-	// 	`M ${offset.x} ${offset.y + bottom}`,
-	// 	`l ${length * 0.1} ${flapDepth}`,
-	// 	`h ${length * 0.8}`,
-	// 	`l ${length * 0.1} ${0 - flapDepth}`,
-	// ]
+	const glueTab = [
+		`M ${offset.x} ${offset.y}`,
+		`l ${depth * 0.1} ${-flapWidth}`,
+		`h ${depth * 0.8}`,
+		`l ${depth * 0.1} ${flapWidth}`,
+	]
 
-	// const flaplength = width * 0.5
+	const lockFlap = [
+		`l 	${(width * -0.5)} ${length * 0.2}`,
+		`h 	${(width * -0.4)}`,
 
-	// const upFlap = [
-	// 	`l 	${(depth * -0.5)} ${depth * 0.5}`,
-	// 	`h 	${(depth * -0.25)}`,
+		// 	rx 							ry 						 x-axis-rotation 	large-arc sweep x									y
+		`a 	${width * 0.1}	${width * 0.1} 0 								0 				0 		${width * -0.1} 	${width * 0.1}`,
 
-	// 	// 			rx 							ry 							x-axis-rotation large-arc sweep x 									y
-	// 	`a 	${depth * 0.25}	${depth * 0.25} 0 							0 				0 		${(depth * -0.25)} 	${depth * 0.25}`,
-	// 	`v 	${depth * 0.25}`,
-	// 	`h 	${flaplength}`
-	// ]
+		`v 	${(length * 0.6) - (width * 0.2)}`,
+
+		`a 	${width * 0.1}	${width * 0.1} 0 								0 				0 		${width * 0.1} 	${width * 0.1}`,
+		`h 	${(width * 0.4)}`,
+		`l  ${width * 0.5} ${length * 0.2}`,
+
+		...glueTab
+	]
 
 	// const overFlap = [
 	// 	`l ${depth * -0.5} ${depth * 0.5}`,
@@ -44,17 +49,6 @@ export function defineCarton(depth, width, length,) {
 
 	// 	`h ${depth * 0.25}`,
 	// 	`l ${depth * 0.5} ${depth * 0.5}`,
-	// ]
-
-	// const downFlap = [
-	// 	`h 	${-flaplength}`,
-	// 	`v 	${depth * 0.25}`,
-
-	// 	// 			rx 							ry 							x-axis-rotation large-arc sweep x 									y
-	// 	`a 	${depth * 0.25}	${depth * 0.25} 0 							0 				0 		${(depth * 0.25)} 	${depth * 0.25}`,
-
-	// 	`h 	${(depth * 0.25)}`,
-	// 	`l 	${(depth * 0.5)} ${depth * 0.5}`,
 	// ]
 
 	// const tuckFlap = [
@@ -91,11 +85,12 @@ export function defineCarton(depth, width, length,) {
 			`M ${offset.x} ${offset.y}`,
 			...box,
 			...lidFold,
+			...glueTab
 		],
 
 		cutLines: [
-			// `M 	${offset.x} ${offset.y}`,
-			// ...upFlap,
+			`M 	${offset.x} ${offset.y}`,
+			...lockFlap,
 			// ...overFlap,
 			// ...downFlap,
 
