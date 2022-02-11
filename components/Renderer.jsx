@@ -25,7 +25,9 @@ const gluesToString = arr => {
 
 
 export const Renderer = props => {
-	const { foldLines, cutLines, gluePoints, styles } = {
+	const { foldLines, cutLines, gluePoints, styles, pageWidth, pageHeight } = {
+		pageWidth: "8.5in",
+		pageHeight: "11in",
 		styles: {
 			foldLines: {
 				stroke: 'green',
@@ -47,9 +49,9 @@ export const Renderer = props => {
 	const cuts = cutsToString(cutLines)
 	//	const glues = gluesToString(gluePoints)
 
-	return <div style={{ width: "inherit", length: "inherit", position: "relative" }}>
-		<div style={{ width: "inherit", length: "inherit", position: "absolute" }}>
-			<svg viewBox="0 0 500 500" xmlns="http://www.w3.org/2000/svg">
+	return <div style={{ width: pageWidth, height: pageHeight, position: "relative" }}>
+		<div style={{ width: "100%", height: "100%", position: "absolute" }}>
+			<svg width={pageWidth} height={pageHeight} xmlns="http://www.w3.org/2000/svg">
 				<g id="svgGroup"
 					strokeLinecap="round"
 					fillRule="evenodd"

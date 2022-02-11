@@ -2,18 +2,7 @@ import { generateBox } from './utilities/box-foldlines'
 
 export function defineCarton(depth, width, length,) {
 
-	var { width, length, depth } = { width: 20, length: 50, depth: 70, ...{ width: Number(width), length: Number(length), depth: Number(depth) } }
-
-	const offset = {
-		x: 10 + width,
-		y: 10 + width * 0.8
-	}
-
-	const box = generateBox(offset, depth, width, length,)
-	const lidFold = [
-		`M ${offset.x + depth + width} ${offset.y + length + width} `,
-		`v ${length} `,
-	]
+	var { width, length, depth } = { width: 75, length: 150, depth: 180, ...{ width: Number(width), length: Number(length), depth: Number(depth) } }
 
 	const bottom = (width * 2) + (depth * 2)
 
@@ -22,6 +11,17 @@ export function defineCarton(depth, width, length,) {
 	const flapCurveRadius = width * 0.1
 	const tuckFlapLength = length * 0.3
 	const tongueArcRadius = length * 0.2
+
+	const offset = {
+		x: 10 + Math.max(width, lockFlapLength) + 5,
+		y: 10 + width * 0.8
+	}
+
+	const lidFold = [
+		`M ${offset.x + depth + width} ${offset.y + length + width} `,
+		`v ${length} `,
+	]
+
 
 	const glueTab = [
 		`M ${offset.x} ${offset.y}`,
@@ -36,18 +36,21 @@ export function defineCarton(depth, width, length,) {
 	const tongueArc1 = `a ${tongueArcRadius} ${tongueArcRadius} 0 0 0 ${tongueArcRadius} ${-tongueArcRadius}`
 	const tongueArc2 = `a ${tongueArcRadius} ${tongueArcRadius} 0 0 0 ${-tongueArcRadius} ${-tongueArcRadius}`
 
+	const lockFlapAngleYLength = (length * 0.2) + flapCurveRadius
+
 	const lockTab = [
 		`M ${offset.x} ${offset.y}`,
-		`l ${(width * -0.5)} ${length * 0.2}`,
+		`l ${(width * -0.5)} ${lockFlapAngleYLength}`,
 		`h ${(width * -0.4)}`,
+
 		arc1,
 
-		`v ${(length * 0.6) - (width * 0.2)}`,
+		`v ${(length * 0.6) - (width * 0.2) - (flapCurveRadius * 2)}`,
 
 		arc2,
 
 		`h ${(width * 0.4)}`,
-		`l ${width * 0.5} ${length * 0.2}`,
+		`l ${width * 0.5} ${lockFlapAngleYLength}`,
 	]
 
 	const supportFlap1 = [
@@ -62,12 +65,16 @@ export function defineCarton(depth, width, length,) {
 	const lockFlap = [
 		`M ${offset.x} ${offset.y + width + length}`,
 		`h ${-width}`,
-		`v ${length * 0.2}`,
+		`v ${length * 0.2}`,																	// length * 0.2 + width * 0.1
+
 		arc2,
+
 		`h ${width * 0.5 - flapCurveRadius}`,
 		`v ${(length * 0.6) - (width * 0.2)}`,
 		`h ${-(width * 0.5 - flapCurveRadius)}`,
+
 		arc1,
+
 		`v ${length * 0.2}`,
 		`h ${width}`
 	]
@@ -99,12 +106,12 @@ export function defineCarton(depth, width, length,) {
 
 		// lock slot 1
 		`M ${offset.x + depth + width + 1} ${offset.y + length + width} `,
-		`v ${5} `,
+		`v ${10} `,
 		`h -1`,
 
 		// lock slot 2
 		`M ${offset.x + depth + width + 1} ${offset.y + length + width + length} `,
-		`v ${-5} `,
+		`v ${-10} `,
 		`h -1`
 	]
 
@@ -123,6 +130,8 @@ export function defineCarton(depth, width, length,) {
 		`v ${length * 0.3}`,
 	]
 
+
+	const box = generateBox(offset, depth, width, length,)
 
 	return {
 		metrics: {
