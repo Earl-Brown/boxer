@@ -137,11 +137,11 @@ export function defineCarton(depth, width, length,) {
 		image: "ECMA A5520 Style A - FC0105.png",
 		metrics: {
 			offset: {
-				x: 10 + (depth * 2),
-				y: 10
+				x: 10,
+				y: 10 + (depth * 2)
 			},
 			width: 1000,
-			height: 1000
+			height: bottom + 20
 		},
 
 
@@ -152,19 +152,19 @@ export function defineCarton(depth, width, length,) {
 		],
 
 		cutLines: [
-			`M 	${offset.x} ${offset.y} `,
-			...glueTab,
-			...lockTab,
-			...supportFlap1,
-			...lockFlap,
-			...supportFlap2,
-			`h ${depth} `,
-			tuckFlap1,
-			tuckLid,
-			tuckFlap2,
-			tuckOpening,
-
+			// `M 	${offset.x} ${offset.y} `,
 			// ...glueTab,
+			// ...lockTab,
+			// ...supportFlap1,
+			// ...lockFlap,
+			// ...supportFlap2,
+			// `h ${depth} `,
+			// tuckFlap1,
+			// tuckLid,
+			// tuckFlap2,
+			// tuckOpening,
+
+			// // ...glueTab,
 		],
 
 		// gluePoints: [
