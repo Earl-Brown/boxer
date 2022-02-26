@@ -14,3 +14,33 @@ a {
 * {
   box-sizing: border-box;
 }
+
+div#box-page {
+	border: 1px solid black;
+}
+
+@media print {
+	div#box-page {
+		position: absolute;
+		top: 0;
+		left: 0;
+		border: none;
+	}
+
+	div#box-wrapper {
+		position: unset;
+		border: none;
+	}
+
+	div#render-container {
+		float: unset;
+		position: absolute;
+		left: 0;
+		top: 0;
+	}
+
+	div#input-form {
+		display: none;
+		visibility: hidden;;
+	}
+}

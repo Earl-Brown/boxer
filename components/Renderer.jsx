@@ -22,10 +22,15 @@ const gluesToString = arr => {
 	if (str != null) return str
 	throw "glue points must be a string or an array"
 }
+const mmPerInch = 254
+
+// const pageWidth = 8.5 * mmPerInch
+// const pageHeight = 11 * mmPerInch
 
 
 export const Renderer = props => {
-	const { foldLines, cutLines, gluePoints, styles, pageWidth, pageHeight } = {
+	const { foldLines, cutLines, gluePoints, styles, pageWidth, pageHeight
+	} = {
 		pageWidth: "8.5in",
 		pageHeight: "11in",
 		styles: {
@@ -45,13 +50,14 @@ export const Renderer = props => {
 		}, ...props
 	}
 
+
 	const folds = foldsToString(foldLines)
 	const cuts = cutsToString(cutLines)
 	//	const glues = gluesToString(gluePoints)
 
-	return <div style={{ width: pageWidth, height: pageHeight, position: "relative" }}>
-		<div style={{ width: "100%", height: "100%", position: "absolute" }}>
-			<svg width={pageWidth} height={pageHeight} xmlns="http://www.w3.org/2000/svg">
+	return <div style={{ width: `${pageWidth}mm`, height: `${pageHeight}mm`, position: "relative" }}>
+		<div style={{ width: `${pageWidth}mm`, height: `${pageHeight}mm`, position: "absolute" }}>
+			<svg width={`${pageWidth}mm`} height={`${pageHeight}mm`} viewBox={`0 0 ${pageWidth} ${pageHeight}`} xmlns="http://www.w3.org/2000/svg">
 				<g id="svgGroup"
 					strokeLinecap="round"
 					fillRule="evenodd"
@@ -91,5 +97,5 @@ export const Renderer = props => {
 				</g>
 			</svg>
 		</div>
-	</div>
+	</div >
 }

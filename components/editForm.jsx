@@ -1,33 +1,36 @@
 import { useState } from 'react'
 import { SimpleGrid } from '@mantine/core'
 import { Renderer } from './Renderer'
-import { defineCarton } from './generators/ECMA a55.20.01.01'
+import { defineCarton } from './generators/ECMA A5520 Style A - FC0105'
 
 const mmPerInch = 254
 
+const pageWidth = 8.5 * mmPerInch
+const pageHeight = 11 * mmPerInch
+
 export const EditForm = props => {
-	const { width, length, depth, onChange } = { width: 75, depth: 225, length: 180, pageWidth: `${7.5 * mmPerInch}mm`, pageHeight: `${11 * mmPerInch}mm`, onchange: () => { }, ...props }
+	const { width, length, depth, onChange } = { width: 0.31 * 60, depth: 88.9, length: 63.5, pageWidth: { pageWidth }, pageHeight: { pageHeight }, onchange: () => { }, ...props }
 
 	const [currentDepth, setDepth] = useState(depth)
 	const [currentWidth, setWidth] = useState(width)
 	const [currentLength, setLength] = useState(length)
 
-	const { foldLines, cutLines, gluePoints } = defineCarton(currentDepth, currentWidth, currentLength)
+	const { foldLines, cutLines, gluePoints, image } = defineCarton(currentDepth, currentWidth, currentLength)
 
 	const depthChanged = newDepth => { setDepth(newDepth) }
 	const widthChanged = newWidth => { setWidth(newWidth) }
 	const lengthChanged = newLength => { setLength(newLength) }
 
 	return <div>
-		<div style={{ width: "80%", height: "100%", float: "right" }}>
-			<Renderer foldLines={foldLines} cutLines={cutLines} gluePoints={gluePoints}></Renderer>
+		<div id="render-container" style={{ width: "80%", height: "100%", float: "right" }}>
+			<Renderer foldLines={foldLines} cutLines={cutLines} gluePoints={gluePoints} pageWidth={pageWidth} pageHeight={pageHeight}></Renderer>
 		</div>
 
-		<div style={{ width: "20%", backgroundColor: "lightgreen" }}>
+		<div id="input-form" style={{ width: "20%" }}>
 			<SimpleGrid cols={3}>
 
 				<div>Depth</div>
-				<div>{depth}</div>
+				<div>{currentDepth}</div>
 				<input type="number" value={currentDepth} onChange={e => depthChanged(e.target.value)} />
 
 				<div>Width</div>
@@ -35,10 +38,11 @@ export const EditForm = props => {
 				<input type="number" value={currentWidth} onChange={e => widthChanged(e.target.value)} />
 
 				<div>Length</div>
-				<div>{length}</div>
+				<div>{currentLength}</div>
 				<input type="number" value={currentLength} onChange={e => lengthChanged(e.target.value)} />
 
 			</SimpleGrid>
+			<img src={`images/representations/${image}`} />
 		</div>
 
 	</div>
