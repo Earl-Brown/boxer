@@ -3,7 +3,7 @@ import { SimpleGrid } from '@mantine/core'
 import { Renderer } from './Renderer'
 import { defineCarton } from './generators/ECMA A5520 Style A - FC0105'
 
-const mmPerInch = 254
+const mmPerInch = 25.4
 
 export const EditForm = props => {
 	const { page, width, length, depth, onChange } = {
@@ -32,12 +32,12 @@ export const EditForm = props => {
 	const lengthChanged = newLength => { setLength(newLength) }
 
 	return <div>
-		<div id="render-container" style={{ width: "80%", height: "100%", float: "right" }}>
+		<div id="render-container" style={{ width: `${pageWidth}mm`, height: `${pageHeight}mm`, position: "absolute", left: "300px", top: "0" }}>
 			<div id="dimensions-overlay" style={{ position: "relative", left: "0.25em" }}> Depth {currentDepth}, Width {currentWidth}, Length {currentLength}</div>
 			<Renderer foldLines={foldLines} cutLines={cutLines} gluePoints={gluePoints} pageWidth={pageWidth} pageHeight={pageHeight}></Renderer>
 		</div>
 
-		<div id="input-form" style={{ width: "20%" }}>
+		<div id="input-form" style={{ width: "10%" }}>
 			<SimpleGrid cols={3}>
 
 				<div>Depth</div>

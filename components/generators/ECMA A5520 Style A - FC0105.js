@@ -10,7 +10,7 @@ export function defineCarton(depth, width, length,) {
 	const lockFlapLength = length * 0.475
 	const flapCurveRadius = width * 0.1
 	const tuckFlapLength = length * 0.3
-	const tongueArcRadius = length * 0.2
+	const tongueArcRadius = length * 0.125
 
 	const offset = {
 		x: 10,
