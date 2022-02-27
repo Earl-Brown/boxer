@@ -14,120 +14,120 @@ export function defineCarton(depth, width, length,) {
 
 	const offset = {
 		x: 10 + Math.max(width, lockFlapLength) + 5,
-		y: 10 + width * 0.8
+		y: 10 + width * 2
 	}
 
 	const lidFold = [
-		`M ${offset.x + depth + width} ${offset.y + length + width} `,
-		`v ${length} `,
+		`M ${offset.x + length + width} ${offset.y - width}`,
+		`h ${length} `,
 	]
 
 
 	const glueTab = [
-		`M ${offset.x} ${offset.y}`,
-		`l ${depth * 0.1} ${-flapWidth}`,
-		`h ${depth * 0.8}`,
-		`l ${depth * 0.1} ${flapWidth}`,
+		`M ${offset.x + length + width + length + width} ${offset.y}`,
+		`l ${flapWidth} ${depth * 0.1}`,
+		`v ${depth * 0.8}`,
+		`l ${-flapWidth} ${depth * 0.1} `,
 	]
 
 	// arcs: rx ry x-axis-rotation large-arc sweep x y
-	const arc1 = `a ${flapCurveRadius} ${flapCurveRadius} 0 0 0 ${-flapCurveRadius} ${flapCurveRadius}`
-	const arc2 = `a ${flapCurveRadius} ${flapCurveRadius} 0 0 0 ${flapCurveRadius} ${flapCurveRadius}`
-	const tongueArc1 = `a ${tongueArcRadius} ${tongueArcRadius} 0 0 0 ${tongueArcRadius} ${-tongueArcRadius}`
-	const tongueArc2 = `a ${tongueArcRadius} ${tongueArcRadius} 0 0 0 ${-tongueArcRadius} ${-tongueArcRadius}`
+	const arc1 = `a ${flapCurveRadius} ${flapCurveRadius} 0 0 0 ${flapCurveRadius} ${flapCurveRadius}`
+	const arc2 = `a ${flapCurveRadius} ${flapCurveRadius} 0 0 0 ${flapCurveRadius} ${-flapCurveRadius}`
+	const tongueArc1 = `a ${tongueArcRadius} ${tongueArcRadius} 0 0 0 ${-tongueArcRadius} ${-tongueArcRadius}`
+	const tongueArc2 = `a ${tongueArcRadius} ${tongueArcRadius} 0 0 0 ${-tongueArcRadius} ${tongueArcRadius}`
 
 	const lockFlapAngleYLength = (length * 0.2) + flapCurveRadius
 
 	const lockTab = [
-		`M ${offset.x} ${offset.y}`,
-		`l ${(width * -0.5)} ${lockFlapAngleYLength}`,
-		`h ${(width * -0.4)}`,
+		`M ${offset.x} ${offset.y + depth}`,
+		`l ${lockFlapAngleYLength} ${(width * 0.5)}`,
+		`v ${width * 0.4}`,
 
 		arc1,
 
-		`v ${(length * 0.6) - (width * 0.2) - (flapCurveRadius * 2)}`,
+		`h ${(length * 0.6) - (width * 0.2) - (flapCurveRadius * 2)}`,
 
 		arc2,
 
-		`h ${(width * 0.4)}`,
-		`l ${width * 0.5} ${lockFlapAngleYLength}`,
+		`v ${width * -0.4}`,
+		`l ${lockFlapAngleYLength} ${width * -0.5}`,
 	]
 
 	const supportFlap1 = [
-		`M ${offset.x} ${offset.y + length}`,
-		`h ${-lockFlapLength}`,
-		`v ${width * 0.5 - flapCurveRadius}`,
+		`M ${offset.x + length} ${offset.y + depth}`,
+		`v ${lockFlapLength}`,
+		`h ${width * 0.5 - flapCurveRadius}`,
 		arc2,
-		`h ${lockFlapLength - flapCurveRadius - length * 0.2}`,
-		`l ${length * 0.2} ${width * 0.5}`
+		`v ${-(lockFlapLength - flapCurveRadius - length * 0.2)}`,
+		`l ${width * 0.5} ${length * -0.2}`
 	]
 
 	const lockFlap = [
-		`M ${offset.x} ${offset.y + width + length}`,
-		`h ${-width}`,
-		`v ${length * 0.2}`,																	// length * 0.2 + width * 0.1
+		`M ${offset.x + width + length} ${offset.y + depth}`,
+		`v ${width}`,
+		`h ${length * 0.2}`,																	// length * 0.2 + width * 0.1
 
 		arc2,
 
-		`h ${width * 0.5 - flapCurveRadius}`,
-		`v ${(length * 0.6) - (width * 0.2)}`,
-		`h ${-(width * 0.5 - flapCurveRadius)}`,
+		`v ${-(width * 0.5 - flapCurveRadius)}`,
+		`h ${(length * 0.6) - (width * 0.2)}`,
+		`v ${width * 0.5 - flapCurveRadius}`,
 
 		arc1,
 
-		`v ${length * 0.2}`,
-		`h ${width}`
+		`h ${length * 0.2}`,
+		`v ${-width}`
 	]
 
 	const supportFlap2 = [
-		`M ${offset.x} ${offset.y + length + width + length}`,
-		`l ${length * -0.2} ${width * 0.5}`,
-		`h ${-(lockFlapLength - flapCurveRadius - length * 0.2)}`,
+		`M ${offset.x + length + width + length} ${offset.y + depth}`,
+		`l ${width * 0.5} ${length * 0.2}`,
+		`v ${(lockFlapLength - flapCurveRadius - length * 0.2)}`,
 		arc1,
-		`v ${width * 0.5 - flapCurveRadius}`,
-		`h ${lockFlapLength}`
+		`h ${width * 0.5 - flapCurveRadius}`,
+		`v ${-lockFlapLength}`
 	]
 
 	const tuckFlap1 = [
-		`M ${offset.x + depth} ${offset.y + (width * 2) + (length * 2)}`,
-		`h 5`,
-		`l ${tuckFlapLength} ${width * -0.1}`,
-		`v ${width * -0.85}`,
-		`l ${-tuckFlapLength - 5} ${width * -0.05}`
+		`M ${offset.x + (width * 2) + (length * 2)} ${offset.y}`,
+		`v ${width * -0.3}`,
+		`l ${width * -0.1} ${-tuckFlapLength} `,
+		`h ${width * -0.85} `,
+		`l ${width * -0.05} ${tuckFlapLength + (width * 0.3)} `
 	]
 
 	const tuckLid = [
-		`M ${offset.x + depth} ${offset.y + length + width + length}`,
-		`h ${width + (width * 0.5)}`,
+		`M ${offset.x + length + width + length} ${offset.y} `,
+		`v ${width * -1.1} `,
 		tongueArc1,
-		`v ${length * -0.6}`,
+		`h ${length * -0.6} `,
 		tongueArc2,
-		`h ${-(width + (width * 0.5))}`,
+		`v ${(width + 1.5)} `,
 
 		// lock slot 1
-		`M ${offset.x + depth + width + 1} ${offset.y + length + width} `,
-		`v ${10} `,
-		`h -1`,
+		`M ${offset.x + length + width} ${offset.y - 0.5} `,
+		`h ${length * 0.1} `,
+		`v 0.5`,
 
 		// lock slot 2
-		`M ${offset.x + depth + width + 1} ${offset.y + length + width + length} `,
-		`v ${-10} `,
-		`h -1`
+		`M ${offset.x + length + width + length} ${offset.y - 0.5} `,
+		`h ${length * -0.1} `,
+		`v 0.5`
 	]
 
 	const tuckFlap2 = [
-		`M ${offset.x + depth} ${offset.y + length}`,
-		`h 5`,
-		`l ${tuckFlapLength} ${width * 0.1}`,
-		`v ${width * 0.85}`,
-		`l ${-tuckFlapLength - 5} ${width * 0.05}`
+		`M ${offset.x + length + width} ${offset.y} `,
+		`l ${width * -0.05} ${-tuckFlapLength + (width * -0.3)} `,
+		`h ${width * -0.85} `,
+		`l ${width * -0.1} ${tuckFlapLength} `,
+		`v ${width * 0.3} `,
 	]
 
 	const tuckOpening = [
-		`M ${offset.x + depth} ${offset.y}`,
-		`v ${length * 0.3}`,
-		`a ${length * 0.2} ${length * 0.2} 0 0 0 ${0} ${length * 0.4}`,
-		`v ${length * 0.3}`,
+		`M ${offset.x + length} ${offset.y} `,
+		`h ${length * -0.3} `,
+		`a ${length * 0.2} ${length * 0.2} 0 0 1 ${length * -0.4} ${0} `,
+		`h ${length * -0.3} `,
 	]
 
 
@@ -152,19 +152,19 @@ export function defineCarton(depth, width, length,) {
 		],
 
 		cutLines: [
-			// `M 	${offset.x} ${offset.y} `,
-			// ...glueTab,
-			// ...lockTab,
-			// ...supportFlap1,
-			// ...lockFlap,
-			// ...supportFlap2,
-			// `h ${depth} `,
-			// tuckFlap1,
-			// tuckLid,
-			// tuckFlap2,
-			// tuckOpening,
+			`M 	${offset.x} ${offset.y} `,
+			`v ${depth} `,
+			...glueTab,
+			...lockTab,
+			...supportFlap1,
+			...lockFlap,
+			...supportFlap2,
+			tuckFlap1,
+			tuckLid,
+			tuckFlap2,
+			tuckOpening,
 
-			// // ...glueTab,
+			// ...glueTab,
 		],
 
 		// gluePoints: [
