@@ -5,11 +5,22 @@ import { defineCarton } from './generators/ECMA A5520 Style A - FC0105'
 
 const mmPerInch = 254
 
-const pageWidth = 8.5 * mmPerInch
-const pageHeight = 11 * mmPerInch
-
 export const EditForm = props => {
-	const { width, length, depth, onChange } = { width: 0.31 * 60, depth: 88.9, length: 63.5, pageWidth: { pageWidth }, pageHeight: { pageHeight }, onchange: () => { }, ...props }
+	const { page, width, length, depth, onChange } = {
+		page: {
+			width: 8.5,
+			height: 11
+		},
+		width: 0.31 * 60,
+		depth: 88.9,
+		length: 63.5,
+		onchange: () => { },
+		...props
+	}
+
+	const pageWidth = page.width * mmPerInch
+	const pageHeight = page.height * mmPerInch
+
 
 	const [currentDepth, setDepth] = useState(depth)
 	const [currentWidth, setWidth] = useState(width)

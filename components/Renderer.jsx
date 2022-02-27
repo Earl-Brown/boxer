@@ -24,15 +24,11 @@ const gluesToString = arr => {
 }
 const mmPerInch = 254
 
-// const pageWidth = 8.5 * mmPerInch
-// const pageHeight = 11 * mmPerInch
-
-
 export const Renderer = props => {
 	const { foldLines, cutLines, gluePoints, styles, pageWidth, pageHeight
 	} = {
-		pageWidth: "8.5in",
-		pageHeight: "11in",
+		pageWidth: `${8.5 * mmPerInch}mm`,	// "8.5in",
+		pageHeight: `${11 * mmPerInch}mm`,  //"11in",
 		styles: {
 			foldLines: {
 				stroke: 'green',
