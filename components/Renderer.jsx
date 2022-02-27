@@ -53,7 +53,7 @@ export const Renderer = props => {
 
 	return <div style={{ width: `${pageWidth}mm`, height: `${pageHeight}mm`, position: "relative" }}>
 		<div style={{ width: `${pageWidth}mm`, height: `${pageHeight}mm`, position: "absolute" }}>
-			<svg width={`${pageWidth}mm`} height={`${pageHeight}mm`} viewBox={`0 0 ${pageWidth} ${pageHeight}`} xmlns="http://www.w3.org/2000/svg">
+			<svg style={{ overflow: "visible" }} width={`${pageWidth}mm`} height={`${pageHeight}mm`} viewBox={`0 0 ${pageWidth} ${pageHeight}`} xmlns="http://www.w3.org/2000/svg">
 				<g id="svgGroup"
 					strokeLinecap="round"
 					fillRule="evenodd"

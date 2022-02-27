@@ -13,8 +13,8 @@ export function defineCarton(depth, width, length,) {
 	const tongueArcRadius = length * 0.2
 
 	const offset = {
-		x: 10 + Math.max(width, lockFlapLength) + 5,
-		y: 10 + width * 2
+		x: 10,
+		y: 10 + (width * 1.1) + flapCurveRadius
 	}
 
 	const lidFold = [

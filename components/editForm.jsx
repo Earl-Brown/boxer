@@ -21,7 +21,6 @@ export const EditForm = props => {
 	const pageWidth = page.width * mmPerInch
 	const pageHeight = page.height * mmPerInch
 
-
 	const [currentDepth, setDepth] = useState(depth)
 	const [currentWidth, setWidth] = useState(width)
 	const [currentLength, setLength] = useState(length)
@@ -34,6 +33,7 @@ export const EditForm = props => {
 
 	return <div>
 		<div id="render-container" style={{ width: "80%", height: "100%", float: "right" }}>
+			<div id="dimensions-overlay" style={{ position: "relative", left: "0.25em" }}> Depth {currentDepth}, Width {currentWidth}, Length {currentLength}</div>
 			<Renderer foldLines={foldLines} cutLines={cutLines} gluePoints={gluePoints} pageWidth={pageWidth} pageHeight={pageHeight}></Renderer>
 		</div>
 
