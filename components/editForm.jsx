@@ -8,8 +8,8 @@ const mmPerInch = 254
 export const EditForm = props => {
 	const { page, width, length, depth, onChange } = {
 		page: {
-			width: 8.5,
-			height: 11
+			width: 11,
+			height: 8.5
 		},
 		width: 0.31 * 60,
 		depth: 88.9,
