@@ -32,7 +32,7 @@ export const EditForm = props => {
 	const lengthChanged = newLength => { setLength(newLength) }
 
 	return <div>
-		<div id="render-container" style={{ width: `${pageWidth}mm`, height: `${pageHeight}mm`, position: "absolute", left: "300px", top: "0" }}>
+		<div id="render-container" style={{ width: `${pageWidth}mm`, height: `${pageHeight}mm` }}>
 			<div id="dimensions-overlay" style={{ position: "relative", left: "0.25em" }}> Depth {currentDepth}, Width {currentWidth}, Length {currentLength}</div>
 			<Renderer foldLines={foldLines} cutLines={cutLines} gluePoints={gluePoints} pageWidth={pageWidth} pageHeight={pageHeight}></Renderer>
 		</div>

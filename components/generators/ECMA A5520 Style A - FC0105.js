@@ -100,7 +100,7 @@ export function defineCarton(depth, width, length,) {
 		`M ${offset.x + length + width + length} ${offset.y} `,
 		`v ${width * -1.1} `,
 		tongueArc1,
-		`h ${length * -0.6} `,
+		`h ${-(length - (tongueArcRadius * 2))} `,
 		tongueArc2,
 		`v ${(width + 1.5)} `,
 
@@ -146,14 +146,11 @@ export function defineCarton(depth, width, length,) {
 
 
 		foldLines: [
-			`M ${offset.x} ${offset.y} `,
 			...box,
 			...lidFold
 		],
 
 		cutLines: [
-			`M 	${offset.x} ${offset.y} `,
-			`v ${depth} `,
 			...glueTab,
 			...lockTab,
 			...supportFlap1,

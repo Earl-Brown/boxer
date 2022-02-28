@@ -17,35 +17,31 @@ a {
 
 div#render-container {
 	border: 1px solid black;
-	position: "absolute";
-	 left: "300px";
-	  top: "0"
+	position: absolute;
+	left: 250px;
+	top: 0px;
+}
+
+div#input-form {
+	position: absolute;
+	top: 0;
+	left: 0;
 }
 
 @media print {
-
 	div#render-container {
-		border: 1px solid black;
-		position: "absolute";
-		left: "0px";
-		top: "0"
-	}
-
-	div#box-wrapper {
-		position: unset;
 		border: none;
-	}
-
-	div#render-container {
-		float: unset;
 		position: absolute;
-		left: 0;
-		top: 0;
-		border: none;
+		left: 0px;
+		top: 0px;
 	}
 
 	div#input-form {
+		position: absolute;
+		top: 0;
+		left: 0;
 		display: none;
-		visibility: hidden;;
+		visibility: hidden;
+		width: 0;
 	}
 }
