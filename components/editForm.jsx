@@ -11,19 +11,19 @@ export const EditForm = props => {
 			width: 11,
 			height: 8.5,
 			margin: {
-				x: 0.75,
-				y: 0.75
+				x: 0,
+				y: 0
 			}
 		},
-		width: 0.31 * 60,
+		width: 0.31 * 60, // 60 cards
 		depth: 88.9,
 		length: 63.5,
 		onchange: () => { },
 		...props
 	}
 
-	const pageWidth = page.width * mmPerInch
-	const pageHeight = page.height * mmPerInch
+	const pageWidth = (page.width * mmPerInch)
+	const pageHeight = (page.height * mmPerInch)
 	const margin = `${page.margin.x}mm ${page.margin.y}mm ${page.margin.x}mm ${page.margin.y}mm`
 
 	const [currentDepth, setDepth] = useState(depth)
@@ -37,7 +37,7 @@ export const EditForm = props => {
 	const lengthChanged = newLength => { setLength(newLength) }
 
 	return <div>
-		<div id="render-container" style={{ width: `${pageWidth}mm`, height: `${pageHeight}mm` }}>
+		<div id="render-container" style={{ width: `${pageWidth}mm`, height: `${pageHeight}mm`, margin: `${margin}mm` }}>
 			<div id="dimensions-overlay" style={{ position: "relative", left: "0.25em" }}> Depth {currentDepth}, Width {currentWidth}, Length {currentLength}</div>
 			<Renderer foldLines={foldLines} cutLines={cutLines} gluePoints={gluePoints} pageWidth={pageWidth} pageHeight={pageHeight}></Renderer>
 		</div>
