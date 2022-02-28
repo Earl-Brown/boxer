@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { SimpleGrid } from '@mantine/core'
 import { Renderer } from './Renderer'
-import { defineCarton } from './generators/ECMA A5520 Style A - FC0105'
+import { defineCarton } from './generators/ECMA A5520 Style B - FC0105'
 
 const mmPerInch = 25.4
 
