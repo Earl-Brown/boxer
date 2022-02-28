@@ -105,16 +105,6 @@ export function defineCarton(depth, width, length,) {
 		`v ${(width + 1.5)} `,
 
 		// lock slot 1
-		`M ${offset.x + length + width} ${offset.y - 0.5} `,
-		`h 3`,
-		`v 0.5`,
-
-		// lock slot 2
-		`M ${offset.x + length + width + length} ${offset.y - 0.5} `,
-		`h -3`,
-		`v 0.5`,
-
-		// lock slot 1
 		`M ${offset.x + length + width} ${offset.y - (width + 0.5)} `,
 		`h 3`,
 		`v 0.5`,
