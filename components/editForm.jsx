@@ -42,7 +42,7 @@ export const EditForm = props => {
 			<Renderer foldLines={foldLines} cutLines={cutLines} gluePoints={gluePoints} pageWidth={pageWidth} pageHeight={pageHeight}></Renderer>
 		</div>
 
-		<div id="input-form" style={{ width: "10%" }}>
+		<div id="input-form">
 			<SimpleGrid cols={3}>
 
 				<div>Depth</div>

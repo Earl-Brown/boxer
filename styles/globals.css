@@ -26,6 +26,7 @@ div#input-form {
 	position: absolute;
 	top: 0;
 	left: 0;
+	width: 240px;
 }
 
 @media print {
