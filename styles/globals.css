@@ -29,6 +29,10 @@ div#input-form {
 }
 
 @media print {
+	@page {
+		size: landscape;
+	}
+
 	div#render-container {
 		border: none;
 		position: absolute;
