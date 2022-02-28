@@ -135,6 +135,7 @@ export function defineCarton(depth, width, length,) {
 
 	return {
 		image: "ECMA A5520 Style A - FC0105.png",
+
 		metrics: {
 			offset: {
 				x: 10,

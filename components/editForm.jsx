@@ -9,7 +9,11 @@ export const EditForm = props => {
 	const { page, width, length, depth, onChange } = {
 		page: {
 			width: 11,
-			height: 8.5
+			height: 8.5,
+			margin: {
+				x: 0.75,
+				y: 0.75
+			}
 		},
 		width: 0.31 * 60,
 		depth: 88.9,
@@ -18,8 +22,8 @@ export const EditForm = props => {
 		...props
 	}
 
-	const pageWidth = page.width * mmPerInch
-	const pageHeight = page.height * mmPerInch
+	const pageWidth = (page.width - (page.margin.x * 2)) * mmPerInch
+	const pageHeight = (page.height - (page.margin.y * 2)) * mmPerInch
 
 	const [currentDepth, setDepth] = useState(depth)
 	const [currentWidth, setWidth] = useState(width)
