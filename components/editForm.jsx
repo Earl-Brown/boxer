@@ -22,8 +22,9 @@ export const EditForm = props => {
 		...props
 	}
 
-	const pageWidth = (page.width - (page.margin.x * 2)) * mmPerInch
-	const pageHeight = (page.height - (page.margin.y * 2)) * mmPerInch
+	const pageWidth = page.width * mmPerInch
+	const pageHeight = page.height * mmPerInch
+	const margin = `${page.margin.x}mm ${page.margin.y}mm ${page.margin.x}mm ${page.margin.y}mm`
 
 	const [currentDepth, setDepth] = useState(depth)
 	const [currentWidth, setWidth] = useState(width)
