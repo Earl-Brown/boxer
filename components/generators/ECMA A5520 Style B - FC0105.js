@@ -12,12 +12,13 @@ export function defineCarton(depth, width, length,) {
 	const tongueArcRadiusX = length * 0.175
 	const tongueArcRadiusY = length * 0.15
 	const glueTabWidth = width * 0.9
+  const tuckLidStraightaway = width * 0.25
 
 	const lockSlotLength = 3
 
 	const offset = {
 		x: 5 + glueTabWidth,
-		y: 5 + (width * 1.05) + tongueArcRadiusY
+		y: 5 + (width + tuckLidStraightaway) + tongueArcRadiusY
 	}
 
 	const lidFold = [
@@ -101,11 +102,11 @@ export function defineCarton(depth, width, length,) {
 
 	const tuckLid = [
 		`M ${offset.x + length} ${offset.y} `,
-		`v ${width * -1.25} `,
+		`v -${width + tuckLidStraightaway} `,
 		tongueArc1,
-		`h ${-(length - (tongueArcRadiusX * 2))} `,
+		`h -${length - (tongueArcRadiusX * 2)} `,
 		tongueArc2,
-		`v ${width * 1.25} `,
+		`v ${width + tuckLidStraightaway} `,
 
 		// lock slot 1
 		`M ${offset.x} ${offset.y - (width + 0.5)} `,
