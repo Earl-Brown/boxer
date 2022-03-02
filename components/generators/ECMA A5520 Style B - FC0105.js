@@ -12,13 +12,13 @@ export function defineCarton(depth, width, length,) {
 	const tongueArcRadiusX = length * 0.175
 	const tongueArcRadiusY = length * 0.15
 	const glueTabWidth = width * 0.9
-  const tuckOpeningDepth = width * 0.4
+  const thumbNotchDepth = width * 0.4
 
 	const lockSlotLength = 3
 
 	const offset = {
 		x: 5 + glueTabWidth,
-		y: 5 + width + tuckOpeningDepth + tongueArcRadiusY
+		y: 5 + width + thumbNotchDepth + tongueArcRadiusY
 	}
 
 	const lidFold = [
@@ -39,7 +39,7 @@ export function defineCarton(depth, width, length,) {
 	const arc2 = `a ${flapCurveRadius} ${flapCurveRadius} 0 0 0 ${flapCurveRadius} ${-flapCurveRadius}`
 	const tongueArc1 = `a ${tongueArcRadiusX} ${tongueArcRadiusY} 0 0 0 ${-tongueArcRadiusX} ${-tongueArcRadiusY}`
 	const tongueArc2 = `a ${tongueArcRadiusX} ${tongueArcRadiusY} 0 0 0 ${-tongueArcRadiusX} ${tongueArcRadiusY}`
-  const tuckOpeningArc = `a ${tuckOpeningDepth} ${tuckOpeningDepth} 0 0 1 -${tuckOpeningDepth * 2} 0 `
+  const thumbNotchArc = `a ${thumbNotchDepth} ${thumbNotchDepth} 0 0 1 -${thumbNotchDepth * 2} 0 `
 
 
 	const lockFlapAngleYLength = (length * 0.2) + flapCurveRadius
@@ -104,11 +104,11 @@ export function defineCarton(depth, width, length,) {
 
 	const tuckLid = [
 		`M ${offset.x + length} ${offset.y} `,
-		`v -${width + tuckOpeningDepth} `,
+		`v -${width + thumbNotchDepth} `,
 		tongueArc1,
 		`h -${length - (tongueArcRadiusX * 2)} `,
 		tongueArc2,
-		`v ${width + tuckOpeningDepth} `,
+		`v ${width + thumbNotchDepth} `,
 
 		// lock slot 1
 		`M ${offset.x} ${offset.y - (width + 0.5)} `,
@@ -129,11 +129,11 @@ export function defineCarton(depth, width, length,) {
 		`v ${lockSlotLength} `,
 	]
 
-	const tuckOpening = [
+	const thumbNotch = [
 		`M ${offset.x + length + width + length} ${offset.y} `,
-		`h -${(length/ 2) - tuckOpeningDepth} `,
-		tuckOpeningArc,
-		`h -${(length/ 2) - tuckOpeningDepth} `,
+		`h -${(length/ 2) - thumbNotchDepth} `,
+		thumbNotchArc,
+		`h -${(length/ 2) - thumbNotchDepth} `,
 	]
 
 	const openSide = [
@@ -171,7 +171,7 @@ export function defineCarton(depth, width, length,) {
 			tuckFlap1,
 			tuckLid,
 			tuckFlap2,
-			tuckOpening,
+			thumbNotch,
 			openSide,
 
 			// ...glueTab,
