@@ -51,8 +51,8 @@ export const Renderer = props => {
 	const cuts = cutsToString(cutLines)
 	//	const glues = gluesToString(gluePoints)
 
-	return <div style={{ width: `${pageWidth}mm`, height: `${pageHeight}mm`, position: "relative" }}>
-		<div style={{ width: `${pageWidth}mm`, height: `${pageHeight}mm`, position: "absolute" }}>
+	return <div style={{ width: `${pageWidth}mm`, height: `${pageHeight}mm`, position: "relative", margin: "0", padding: "0" }}>
+		<div style={{ width: `${pageWidth}mm`, height: `${pageHeight}mm`, position: "absolute", margin: "0", padding: "0" }}>
 			<svg style={{ overflow: "visible" }} width={`${pageWidth}mm`} height={`${pageHeight}mm`} viewBox={`0 0 ${pageWidth} ${pageHeight}`} xmlns="http://www.w3.org/2000/svg">
 				<g id="svgGroup"
 					strokeLinecap="round"

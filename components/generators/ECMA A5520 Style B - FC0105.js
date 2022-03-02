@@ -6,17 +6,18 @@ export function defineCarton(depth, width, length,) {
 
 	const bottom = (width * 2) + (depth * 2)
 
-	const flapWidth = width * 0.75
 	const lockFlapLength = length * 0.475
 	const flapCurveRadius = width * 0.1
 	const tuckFlapLength = length * 0.3
-	const tongueArcRadius = length * 0.1
+	const tongueArcRadiusX = length * 0.175
+	const tongueArcRadiusY = length * 0.15
+	const glueTabWidth = width * 0.9
 
 	const lockSlotLength = 3
 
 	const offset = {
-		x: 10 + width,
-		y: 10 + (width * 1.05) + flapCurveRadius
+		x: 5 + glueTabWidth,
+		y: 5 + (width * 1.05) + tongueArcRadiusY
 	}
 
 	const lidFold = [
@@ -27,16 +28,16 @@ export function defineCarton(depth, width, length,) {
 
 	const glueTab = [
 		`M ${offset.x} ${offset.y}`,
-		`l ${-flapWidth} ${depth * 0.1}`,
-		`v ${depth * 0.8}`,
-		`l ${flapWidth} ${depth * 0.1} `,
+		`l ${-glueTabWidth} ${depth * 0.025}`,
+		`v ${depth * 0.95}`,
+		`l ${glueTabWidth} ${depth * 0.025} `,
 	]
 
 	// arcs: rx ry x-axis-rotation large-arc sweep x y
 	const arc1 = `a ${flapCurveRadius} ${flapCurveRadius} 0 0 0 ${flapCurveRadius} ${flapCurveRadius}`
 	const arc2 = `a ${flapCurveRadius} ${flapCurveRadius} 0 0 0 ${flapCurveRadius} ${-flapCurveRadius}`
-	const tongueArc1 = `a ${tongueArcRadius} ${tongueArcRadius} 0 0 0 ${-tongueArcRadius} ${-tongueArcRadius}`
-	const tongueArc2 = `a ${tongueArcRadius} ${tongueArcRadius} 0 0 0 ${-tongueArcRadius} ${tongueArcRadius}`
+	const tongueArc1 = `a ${tongueArcRadiusX} ${tongueArcRadiusY} 0 0 0 ${-tongueArcRadiusX} ${-tongueArcRadiusY}`
+	const tongueArc2 = `a ${tongueArcRadiusX} ${tongueArcRadiusY} 0 0 0 ${-tongueArcRadiusX} ${tongueArcRadiusY}`
 
 	const lockFlapAngleYLength = (length * 0.2) + flapCurveRadius
 
@@ -95,14 +96,14 @@ export function defineCarton(depth, width, length,) {
 		`v ${-lockSlotLength}`,
 		`l ${width * -0.1} ${-tuckFlapLength} `,
 		`h ${width * -0.85} `,
-		`l ${width * -0.05} ${tuckFlapLength + (width * 0.3)} `
+		`l ${width * -0.05} ${tuckFlapLength} `
 	]
 
 	const tuckLid = [
 		`M ${offset.x + length} ${offset.y} `,
 		`v ${width * -1.25} `,
 		tongueArc1,
-		`h ${-(length - (tongueArcRadius * 2))} `,
+		`h ${-(length - (tongueArcRadiusX * 2))} `,
 		tongueArc2,
 		`v ${width * 1.25} `,
 
@@ -122,7 +123,7 @@ export function defineCarton(depth, width, length,) {
 		`l ${width * -0.05} ${-tuckFlapLength + (-lockSlotLength)} `,
 		`h ${width * -0.85} `,
 		`l ${width * -0.1} ${tuckFlapLength} `,
-		`v ${width * 0.3} `,
+		`v ${lockSlotLength} `,
 	]
 
 	const tuckOpening = [
@@ -130,6 +131,11 @@ export function defineCarton(depth, width, length,) {
 		`h ${length * -0.3} `,
 		`a ${length * 0.2} ${length * 0.2} 0 0 1 ${length * -0.4} ${0} `,
 		`h ${length * -0.3} `,
+	]
+
+	const openSide = [
+		`M ${offset.x + length + width + length + width} ${offset.y}`,
+		`v ${depth}`
 	]
 
 
@@ -163,6 +169,7 @@ export function defineCarton(depth, width, length,) {
 			tuckLid,
 			tuckFlap2,
 			tuckOpening,
+			openSide,
 
 			// ...glueTab,
 		],

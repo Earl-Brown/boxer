@@ -34,11 +34,19 @@ div#input-form {
 		size: landscape;
 	}
 
+	body {
+		overflow: hidden;
+	}
+
 	div#render-container {
 		border: none;
 		position: absolute;
 		left: 0px;
 		top: 0px;
+		bottom: 0px;
+		right: 0px;
+		z-index: 500;
+		background-color: white;
 	}
 
 	div#input-form {

@@ -24,7 +24,6 @@ export const EditForm = props => {
 
 	const pageWidth = (page.width * mmPerInch)
 	const pageHeight = (page.height * mmPerInch)
-	const margin = `${page.margin.x}mm ${page.margin.y}mm ${page.margin.x}mm ${page.margin.y}mm`
 
 	const [currentDepth, setDepth] = useState(depth)
 	const [currentWidth, setWidth] = useState(width)
@@ -37,8 +36,8 @@ export const EditForm = props => {
 	const lengthChanged = newLength => { setLength(newLength) }
 
 	return <div>
-		<div id="render-container" style={{ width: `${pageWidth}mm`, height: `${pageHeight}mm`, margin: `${margin}mm` }}>
-			<div id="dimensions-overlay" style={{ position: "relative", left: "0.25em" }}> Depth {currentDepth}, Width {currentWidth}, Length {currentLength}</div>
+		<div id="render-container" style={{ width: `${pageWidth}mm`, height: `${pageHeight}mm`, overflow: "hidden", position: "relative", margin: "0", padding: "0" }}>
+			<div id="dimensions-overlay" style={{ position: "absolute", right: "0.25em", bottom: "0.25em" }}> Depth {currentDepth}, Width {currentWidth}, Length {currentLength}</div>
 			<Renderer foldLines={foldLines} cutLines={cutLines} gluePoints={gluePoints} pageWidth={pageWidth} pageHeight={pageHeight}></Renderer>
 		</div>
 
@@ -46,15 +45,15 @@ export const EditForm = props => {
 			<SimpleGrid cols={3}>
 
 				<div>Depth</div>
-				<div>{currentDepth}</div>
+				<div>{depth}</div>
 				<input type="number" value={currentDepth} onChange={e => depthChanged(e.target.value)} />
 
 				<div>Width</div>
-				<div>{currentWidth}</div>
+				<div>{width}</div>
 				<input type="number" value={currentWidth} onChange={e => widthChanged(e.target.value)} />
 
 				<div>Length</div>
-				<div>{currentLength}</div>
+				<div>{length}</div>
 				<input type="number" value={currentLength} onChange={e => lengthChanged(e.target.value)} />
 
 			</SimpleGrid>
